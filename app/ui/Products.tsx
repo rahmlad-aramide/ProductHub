@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../ui/ProductCard";
 import { Product } from "../definitions/types";
-import { LoadingIndicator } from "../assets/svg";
 import { ErrorIndicator } from "./ErrorIndicator";
 import { Button } from "./Button";
 import { useRouter } from "next/navigation";
