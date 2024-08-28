@@ -37,7 +37,7 @@ const DeleteModal: React.FC<{
       // Update localStorage after deletion
       const currentProducts = loadFromLocalStorage() || [];
       const updatedProducts = currentProducts.filter(
-        (product: any) => product.id !== id
+        (product: any) => product.id !== id,
       );
       saveToLocalStorage(updatedProducts);
 

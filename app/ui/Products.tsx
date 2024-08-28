@@ -60,7 +60,7 @@ const Products: React.FC = () => {
             product.price >= minPrice &&
             product.price <= maxPrice
           );
-        })
+        }),
       );
       saveToLocalStorage(updatedProducts);
     }
@@ -80,7 +80,7 @@ const Products: React.FC = () => {
             product.price >= minPrice &&
             product.price <= maxPrice
           );
-        })
+        }),
       );
     }
   }, [selectedCategory, minPrice, maxPrice, products]);

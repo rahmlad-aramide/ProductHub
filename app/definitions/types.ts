@@ -62,7 +62,7 @@ export interface NotificationContextType {
     message: string,
     type: NotificationType,
     link: string,
-    linkText: string
+    linkText: string,
   ) => void;
   close: () => void;
 }

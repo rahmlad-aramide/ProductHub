@@ -1,5 +1,5 @@
-import { mockProducts } from '@/app/data/mockProducts';
-import { NextResponse } from 'next/server';
+import { mockProducts } from "@/app/data/mockProducts";
+import { NextResponse } from "next/server";
 import generateUniqueId from "generate-unique-id";
 
 // Handle GET request to fetch products
@@ -11,7 +11,7 @@ export async function GET() {
 export async function POST(req: Request) {
   const uid = generateUniqueId({
     length: 10,
-    useLetters: false
+    useLetters: false,
   });
   const body = await req.json();
   const newProduct = {

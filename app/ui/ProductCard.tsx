@@ -13,7 +13,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
   category,
   imageUrl,
-  onDelete
+  onDelete,
 }) => {
   const { push } = useRouter();
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
@@ -39,7 +39,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="border-t pt-4">
           <h3 className="text-lg font-semibold text-heading">{title}</h3>
           <p className="text-paragraph">{category}</p>
-          <p className="text-primary-600 font-semibold">${Number(price).toFixed(2)}</p>
+          <p className="text-primary-600 font-semibold">
+            ${Number(price).toFixed(2)}
+          </p>
         </div>
         <div className="mt-2 flex justify-between">
           <Button

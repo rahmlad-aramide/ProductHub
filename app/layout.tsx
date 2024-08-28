@@ -6,10 +6,11 @@ import Footer from "./ui/Footer";
 import { inter } from "./fonts";
 
 export const metadata: Metadata = {
-  title: 'ProductHub - Your One-Stop Shop',
-  description: 'Browse and manage products in ProductHub, your go-to product listing platform.',
-  keywords: 'e-commerce, products, shop, ProductHub',
-  authors: [{ name: 'Abdrahman Oladimeji' }],
+  title: "ProductHub - Your One-Stop Shop",
+  description:
+    "Browse and manage products in ProductHub, your go-to product listing platform.",
+  keywords: "e-commerce, products, shop, ProductHub",
+  authors: [{ name: "Abdrahman Oladimeji" }],
 };
 
 export default function RootLayout({
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />  
+        <Navbar />
         {children}
         <Footer />
       </body>

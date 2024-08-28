@@ -50,16 +50,17 @@ const EditProductForm = ({ id }: { id: string }) => {
   };
   useEffect(() => {
     fetchProducts();
+    //eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     // Fetch the products from localStorage
     const fetchedProducts = loadFromLocalStorage();
     if (fetchedProducts) {
-        console.log(fetchedProducts)
+      console.log(fetchedProducts);
       // Find the product with the matching id
       const productToEdit = fetchedProducts.find(
-        (product: Product) => product.id === Number(id)
+        (product: Product) => product.id === Number(id),
       );
 
       // If the product is found, set the states
@@ -70,6 +71,7 @@ const EditProductForm = ({ id }: { id: string }) => {
         setTypedUrl(productToEdit.imageUrl);
       }
     }
+    //eslint-disable-next-line
   }, []);
 
   const updateProduct = (e: React.FormEvent) => {
@@ -81,7 +83,7 @@ const EditProductForm = ({ id }: { id: string }) => {
 
     // Find the index of the product to update
     const productIndex = products.findIndex(
-      (product: any) => product.id === Number(id)
+      (product: any) => product.id === Number(id),
     );
 
     if (productIndex === -1) {
@@ -140,89 +142,89 @@ const EditProductForm = ({ id }: { id: string }) => {
   return (
     <main className="bg-[#FAFDFF] bg-vectorLines bg-center min-h-[calc(100vh_-_160px)]">
       <Breadcrumb links={links} />
-        <section className="mx-auto flex justify-center items-center py-[72px] md:py-[88px]">
+      <section className="mx-auto flex justify-center items-center py-[72px] md:py-[88px]">
         <div className="container flex flex-col py-8 space-y-8 px-6 bg-white rounded-[10px] border-[0.5px] border-grey-100 max-w-xl w-[calc(100%_-_32px)] mx-auto">
-            <div>
+          <div>
             <h1
-                className={`${inter.className} cursor-pointer mb-[14px] text-3xl font-medium text-center`}
+              className={`${inter.className} cursor-pointer mb-[14px] text-3xl font-medium text-center`}
             >
-                Update Product
+              Update Product
             </h1>
             <p
-                className={`${poppins.className} text-center text-grey-300 text-sm`}
+              className={`${poppins.className} text-center text-grey-300 text-sm`}
             >
-                Please enter updated details of the product below.
+              Please enter updated details of the product below.
             </p>
-            </div>
-            <form onSubmit={updateProduct}>
+          </div>
+          <form onSubmit={updateProduct}>
             <div className="mb-4">
-                <label
+              <label
                 htmlFor="title"
                 className="block text-sm font-medium text-gray-700"
-                >
+              >
                 Title
-                </label>
-                <Input
+              </label>
+              <Input
                 type="text"
                 id="title"
                 name="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                />
+              />
             </div>
             <div className="mb-4">
-                <label
+              <label
                 htmlFor="price"
                 className="block text-sm font-medium text-gray-700"
-                >
+              >
                 Price ($)
-                </label>
-                <Input
+              </label>
+              <Input
                 type="text"
                 id="price"
                 value={price}
                 name="price"
                 onChange={(e) => setPrice(e.target.value)}
-                />
+              />
             </div>
             <div className="mb-4">
-                <label
+              <label
                 htmlFor="category"
                 className="block text-sm font-medium text-gray-700"
-                >
+              >
                 Category
-                </label>
-                <Input
+              </label>
+              <Input
                 type="text"
                 id="category"
                 name="category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                />
+              />
             </div>
             <div className="mb-4">
-                <label
+              <label
                 htmlFor="imageUrl"
                 className="block text-sm font-medium text-gray-700"
-                >
+              >
                 Image URL
-                </label>
-                <Input
+              </label>
+              <Input
                 type="text"
                 id="imageUrl"
                 name="imageUrl"
                 value={imageUrl}
                 onChange={(e) => setTypedUrl(e.target.value)}
-                />
-                {errorImageUrl ? (
+              />
+              {errorImageUrl ? (
                 <p className="text-red-500 text-xs mt-2">
-                    Failed to load image. Please check the URL.
+                  Failed to load image. Please check the URL.
                 </p>
-                ) : (
+              ) : (
                 <div className="mt-2">
-                    {imageUrl ? (
+                  {imageUrl ? (
                     <div className="h-[200px] w-full">
-                        <Image
+                      <Image
                         src={imageUrl}
                         alt="Preview"
                         className="max-w-full w-full h-full border rounded-lg shadow-md object-scale-down"
@@ -230,24 +232,24 @@ const EditProductForm = ({ id }: { id: string }) => {
                         width={200}
                         height={200}
                         unoptimized
-                        />
+                      />
                     </div>
-                    ) : (
+                  ) : (
                     <p className="text-gray-500 text-xs">
-                        Image preview will be shown here...
+                      Image preview will be shown here...
                     </p>
-                    )}
+                  )}
                 </div>
-                )}
+              )}
             </div>
             <Button type="submit" loading={loading.submit} className="w-full">
-                Update Product
+              Update Product
             </Button>
             {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
-            </form>
+          </form>
         </div>
-        </section>
-      </main>
+      </section>
+    </main>
   );
 };
 

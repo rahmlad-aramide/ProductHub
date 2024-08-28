@@ -15,7 +15,7 @@ import React, { useEffect, useState } from "react";
 
 const NewProductForm: React.FC = () => {
   const { push } = useRouter();
-  const {notify} = useNotification()
+  const { notify } = useNotification();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
@@ -79,7 +79,7 @@ const NewProductForm: React.FC = () => {
       setImageUrl("");
       setLoading(false);
       notify("Succesful, you're being redirected.", "success");
-  
+
       setTimeout(() => {
         push("/");
       }, 3000);

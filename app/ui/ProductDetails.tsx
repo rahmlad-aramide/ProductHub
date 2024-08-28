@@ -13,10 +13,10 @@ const ProductDetails: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const product = loadFromLocalStorage()?.find(
-    (p: Product) => p.id === Number(id)
+    (p: Product) => p.id === Number(id),
   );
 
-  useEffect(()=> {
+  useEffect(() => {
     setLoading(false);
   }, []);
 
@@ -71,7 +71,7 @@ const ProductDetails: React.FC = () => {
             <p className="mt-4 text-paragraph">
               Experience the quality {product.title}, an innovation of{" "}
               {product.category}. It offers an exceptional value, combining
-              cutting-edge features with reliable performance. Whether you're a
+              cutting-edge features with reliable performance. Whether you&apos;re a
               professional or an enthusiast, {product.title} is designed to meet
               and exceed your expectations.
             </p>
