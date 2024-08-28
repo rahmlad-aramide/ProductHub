@@ -6,7 +6,6 @@ import Breadcrumb from "./BreadCrumb";
 import { loadFromLocalStorage } from "../utils/localStorage";
 import { Product } from "../definitions/types";
 import { LoadingIndicator } from "../assets/svg";
-import { ErrorIndicator } from "./ErrorIndicator";
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams();

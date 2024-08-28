@@ -19,14 +19,15 @@ const Products: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(1000);
+  const [rangeMaxPrice, setRangeMaxPrice] = useState<number>(1000); // Static maxPrice for the range input
+  const [dynamicMaxPrice, setDynamicMaxPrice] = useState<number>(1000); // Dynamic maxPrice based on current products
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   const fetchProducts = async () => {
     setLoading(true);
     setError(null);
     try {
-      let products = loadFromLocalStorage();
+      let products:Product[] = loadFromLocalStorage();
       if (!products) {
         const res = await fetch("/api/products");
         if (!res.ok) {
@@ -36,6 +37,11 @@ const Products: React.FC = () => {
         saveToLocalStorage(products);
       }
       if (products && products.length > 0) {
+        const highestPrice = Math.max(...products.map((p) => p.price));
+        setDynamicMaxPrice(highestPrice);
+        if (highestPrice > rangeMaxPrice) {
+          setRangeMaxPrice(highestPrice);
+        }
         setProducts(products);
       } else {
         setProducts([]);
@@ -58,9 +64,9 @@ const Products: React.FC = () => {
             (selectedCategory === "All" ||
               product.category === selectedCategory) &&
             product.price >= minPrice &&
-            product.price <= maxPrice
+            product.price <= dynamicMaxPrice
           );
-        }),
+        })
       );
       saveToLocalStorage(updatedProducts);
     }
@@ -78,12 +84,12 @@ const Products: React.FC = () => {
             (selectedCategory === "All" ||
               product.category === selectedCategory) &&
             product.price >= minPrice &&
-            product.price <= maxPrice
+            product.price <= dynamicMaxPrice
           );
-        }),
+        })
       );
     }
-  }, [selectedCategory, minPrice, maxPrice, products]);
+  }, [selectedCategory, minPrice, dynamicMaxPrice, products]);
 
   if (loading) {
     return (
@@ -159,7 +165,7 @@ const Products: React.FC = () => {
                 type="range"
                 id="minPrice"
                 min="0"
-                max="1000"
+                max={rangeMaxPrice}
                 value={minPrice}
                 onChange={(e) => setMinPrice(Number(e.target.value))}
                 className="mr-0 lg:mr-4"
@@ -168,13 +174,13 @@ const Products: React.FC = () => {
                 type="range"
                 id="maxPrice"
                 min="0"
-                max="1000"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(Number(e.target.value))}
+                max={rangeMaxPrice}
+                value={dynamicMaxPrice}
+                onChange={(e) => setDynamicMaxPrice(Number(e.target.value))}
               />
             </div>
             <span className="lg:whitespace-nowrap lg:ml-4">
-              ${minPrice.toFixed(2)} - ${maxPrice.toFixed(2)}
+              ${minPrice.toFixed(2)} - ${dynamicMaxPrice.toFixed(2)}
             </span>
           </div>
         </div>
