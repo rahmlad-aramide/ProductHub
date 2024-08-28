@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://producthub.vercel.app/sitemap.xml",
+    sitemap: "https://producthub-rahmlad.vercel.app/sitemap.xml",
   };
 }
